@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Mi experiencia AR</title>
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#06060a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Mi experiencia AR">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
+  <meta itemprop="name" content="Mi experiencia AR">
+  <meta name="twitter:title" content="Mi experiencia AR">
+  <meta property="og:title" content="Mi experiencia AR">
+  <meta property="og:site_name" content="Mi experiencia AR">
+  <meta name="description" content="Experiencia de realidad aumentada creada con Zence Inverse Reality.">
+  <meta itemprop="description" content="Experiencia de realidad aumentada creada con Zence Inverse Reality.">
+  <meta property="og:description" content="Experiencia de realidad aumentada creada con Zence Inverse Reality.">
+  <meta name="twitter:description" content="Experiencia de realidad aumentada creada con Zence Inverse Reality.">
+
+  <style>
+    html, body { margin: 0; background: #06060a; }
+    #inre-espera {
+      position: fixed;
+      inset: 0;
+      z-index: 2147483646;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 32px 24px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      background: #06060a;
+      color: #f2f4f8;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      text-align: center;
+      transition: opacity 420ms ease, visibility 420ms ease;
+    }
+    #inre-espera.inre-fuera { opacity: 0; visibility: hidden; pointer-events: none; }
+    #inre-espera .inre-indicador { margin: 24px 0 30px; }
+    #inre-espera .inre-cubo {
+      position: relative;
+      width: 70.4px;
+      height: 70.4px;
+      --clr: #a78bfa;
+      --clr-alpha: rgba(124, 92, 255, .1);
+      transform-style: preserve-3d;
+      animation: inre-cubo 1.6s infinite ease;
+    }
+    #inre-espera .inre-cubo > div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--clr-alpha);
+      border: 3.5px solid var(--clr);
+    }
+    #inre-espera .inre-cubo > div:nth-child(1) { transform: translateZ(-35.2px) rotateY(180deg); }
+    #inre-espera .inre-cubo > div:nth-child(2) { transform: rotateY(-270deg) translateX(50%); transform-origin: top right; }
+    #inre-espera .inre-cubo > div:nth-child(3) { transform: rotateY(270deg) translateX(-50%); transform-origin: center left; }
+    #inre-espera .inre-cubo > div:nth-child(4) { transform: rotateX(90deg) translateY(-50%); transform-origin: top center; }
+    #inre-espera .inre-cubo > div:nth-child(5) { transform: rotateX(-90deg) translateY(50%); transform-origin: bottom center; }
+    #inre-espera .inre-cubo > div:nth-child(6) { transform: translateZ(35.2px); }
+    @keyframes inre-cubo {
+      0% { transform: rotate(45deg) rotateX(-25deg) rotateY(25deg); }
+      50% { transform: rotate(45deg) rotateX(-385deg) rotateY(25deg); }
+      100% { transform: rotate(45deg) rotateX(-385deg) rotateY(385deg); }
+    }
+    #inre-espera .inre-titulo {
+      font-size: 13px;
+      font-weight: 500;
+      margin: 4px 0 0;
+      color: rgba(242, 244, 248, 0.78);
+    }
+    #inre-espera .inre-marca {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      margin: 2px 0;
+      text-align: center;
+    }
+    #inre-espera .inre-marca-zence {
+      font-size: clamp(28px, 6vw, 34px);
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-indent: 0.12em;
+    }
+    #inre-espera .inre-marca-sub {
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.19em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      color: #ece9f8;
+      text-indent: 0.19em;
+    }
+    #inre-espera .inre-marca-beta {
+      margin-top: 5px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(185, 163, 255, 0.72);
+      text-indent: 0.26em;
+    }
+    #inre-espera .inre-pista { font-size: 14px; line-height: 1.6; margin: 0; max-width: 34ch; color: rgba(242, 244, 248, 0.72); }
+    #inre-espera .inre-aviso { overflow: hidden; max-height: 0; opacity: 0; margin: 0; }
+  </style>
+
+  <script crossorigin="anonymous" src="./external/runtime/runtime.js"></script>
+</head>
+
+<body>
+<div id="inre-espera" role="status" aria-live="polite">
+  <div class="inre-indicador" aria-hidden="true">
+    <div class="inre-cubo">
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+    </div>
+  </div>
+  <div class="inre-marca" aria-label="Zence Inverse Reality Beta 1.0">
+    <span class="inre-marca-zence">Zence</span>
+    <span class="inre-marca-sub">Inverse Reality</span>
+    <span class="inre-marca-beta">Beta 1.0</span>
+  </div>
+  <p class="inre-titulo">Cargando experiencia…</p>
+  <p class="inre-pista"></p>
+  <p class="inre-aviso"></p>
+</div>
+<script src="bundle.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(function () {});
+    });
+  }
+</script>
+</body>
+
+</html>
