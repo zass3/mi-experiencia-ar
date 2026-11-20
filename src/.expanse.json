@@ -1,13 +1,13 @@
 {
   "entrySpaceId": "017878f2-7f27-4313-991a-dbadad19e5e3",
   "objects": {
-    "0a1a87a6-f276-484f-a105-782f82472658": {
+    "00c5a0cb-c3a2-49cf-acf4-1b8fca0fc5de": {
       "components": {
         "__inre_aparicion__": {
           "id": "__inre_aparicion__",
           "name": "inre-aparicion",
           "parameters": {
-            "cubo": 0.74,
+            "cubo": 0.738,
             "demora": 0,
             "esGltf": false,
             "esTextura": true,
@@ -17,31 +17,31 @@
       },
       "geometry": {
         "type": "plane",
-        "width": 0.7407407407407407,
+        "width": 0.7375,
         "height": 1
       },
-      "id": "0a1a87a6-f276-484f-a105-782f82472658",
+      "id": "00c5a0cb-c3a2-49cf-acf4-1b8fca0fc5de",
       "material": {
         "type": "video",
         "color": "#ffffff",
         "textureSrc": {
           "type": "asset",
-          "asset": "assets/Recurso11.mp4"
+          "asset": "assets/Recurso1.mp4"
         }
       },
-      "name": "Recurso11",
-      "order": 2.6633659302490234,
+      "name": "Recurso1",
+      "order": 0.23730406750057553,
       "parentId": "27ecd15e-2002-4d03-b377-b9726846c781",
       "position": [
         0,
-        -0.067,
-        0.5
+        0,
+        0.162
       ],
       "rotation": [
-        -0.002605482892181342,
+        0.01763950590727159,
         0,
         0,
-        0.9999966057236888
+        0.9998444118118315
       ],
       "scale": [
         1,
