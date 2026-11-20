@@ -1,5 +1,12 @@
 {
   "entrySpaceId": "017878f2-7f27-4313-991a-dbadad19e5e3",
+  "inreTimeline": {
+    "duration": 4.6,
+    "fps": 24,
+    "loop": true,
+    "autoplay": true,
+    "items": []
+  },
   "objects": {
     "00c5a0cb-c3a2-49cf-acf4-1b8fca0fc5de": {
       "components": {
